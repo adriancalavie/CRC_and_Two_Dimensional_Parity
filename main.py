@@ -1,4 +1,4 @@
-from crc_and_two_dimensional_parity import *
+import crc_and_two_dimensional_parity
 
 
 def main_menu():
@@ -8,11 +8,11 @@ def main_menu():
 
     answer = input("Do you want to use two-dimensional parity on the message? ").lstrip()
     if answer in yes_answer:
-        two_dimensional_parity_msg = get_two_dimensional_parity_for(message)
+        two_dimensional_parity_msg = crc_and_two_dimensional_parity.get_two_dimensional_parity_for(message)
         if two_dimensional_parity_msg is not False:
             print(f'This is the message after the two-dimensional parity algorithm: {two_dimensional_parity_msg:s}')
             # if check_two_dimensional_parity(100100111011010011011):
-            if check_two_dimensional_parity(two_dimensional_parity_msg):
+            if crc_and_two_dimensional_parity.check_two_dimensional_parity(two_dimensional_parity_msg):
                 print('The message transmitted correctly')
             else:
                 print('The message got error-ed on the way!')
@@ -24,7 +24,7 @@ def main_menu():
     # message = '11010011100110110110101'
     # polynomial = '1011'
 
-    reminder = get_reminder(message, polynomial)
+    reminder = crc_and_two_dimensional_parity.get_reminder(message, polynomial)
     print(f'The reminder is {reminder:s}')
 
     answer = input(f'Do you want to modify the message({message:s})? ').lstrip()
@@ -35,7 +35,7 @@ def main_menu():
         message_as_list[index] = '1' if message_as_list[index] is '0' else '0'
         message = ''.join(message_as_list)
 
-    if is_correct(message, polynomial, reminder):
+    if crc_and_two_dimensional_parity.is_correct(message, polynomial, reminder):
         print('The message transmitted correctly')
     else:
         print("The message DIDN'T transmit correctly!")
